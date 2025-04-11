@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1> Password Manager</h1>
+        
+
+        <div class="input">
+            <label for="username" style="color: black; font-weight: 600;">Name</label><br>
+            <input type="text"  id="username" placeholder="USERNAME" required>
+            <br><br>
+            <label for="text" style="color: black ; font-weight: 600;">Password</label><br>
+            <input type="password" id="password" placeholder="Generated Password" readonly>
+            <button type="button" id="togglePassword">Show</button>
+            <input type="range" id="passwordLength" min="8" max="20" value="8" oninput="updatePassword()">
+            <span id="rangeValue" style="font-size: 15px bold;">8</span>
+            <button onclick="savePassword()">Save Password</button>
+        </div>
+    <section>
+        <h2>Password History</h2>
+        <ul id="passwordHistory"></ul>
+    </section>
+           
+    <script src="index.js"></script>
+     <!-- <script>
+        function generatePassword(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?';
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                password += characters[randomIndex];
+            }
+            return password;
+        }
+
+        function updatePassword() {
+            const passwordLength = document.getElementById('passwordLength').value;
+            document.getElementById('rangeValue').textContent = passwordLength; // Update range value display
+
+            const newPassword = generatePassword(passwordLength); 
+            document.getElementById('password').value = newPassword;
+        }
+
+        function savePassword() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username && password) {
+                // Retrieve existing passwords from local storage
+                let passwordHistory = JSON.parse(localStorage.getItem('passwordHistory')) || [];
+                passwordHistory.push({ username, password }); // Add the new password to the history
+                localStorage.setItem('passwordHistory', JSON.stringify(passwordHistory)); // Save updated history
+
+                alert(`Password saved for ${username}! Password: ${password}`);
+                displayPasswordHistory(); // Update the displayed history
+            } else {
+                alert('Enter a username and generate a password first.');
+            }
+        }
+
+        function deletePassword(index) {
+            let passwordHistory = JSON.parse(localStorage.getItem('passwordHistory')) || [];
+            passwordHistory.splice(index, 1); // Remove the password at the specified index
+            localStorage.setItem('passwordHistory', JSON.stringify(passwordHistory)); // Save updated history
+            displayPasswordHistory(); // Update the displayed history
+        }
+
+        function displayPasswordHistory() {
+            const passwordHistory = JSON.parse(localStorage.getItem('passwordHistory')) || [];
+            const historyList = document.getElementById('passwordHistory');
+            historyList.innerHTML = ''; // Clear existing list
+
+            passwordHistory.forEach(({ username, password }, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${username}: ${password}`;
+
+                 // Create a delete button
+                 const deleteButton = document.createElement('span');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'delete-button';
+                deleteButton.onclick = () => deletePassword(index); // Set the delete function with the index
+
+                listItem.appendChild(deleteButton);
+
+                historyList.appendChild(listItem);
+            });
+        }
+
+        window.onload = displayPasswordHistory; // event handler 
+        //  This is a property of the window object that allows you to assign a function to be called when the window has fully loaded.
+    </script> > -->
+</body>
+</html>
+
+
